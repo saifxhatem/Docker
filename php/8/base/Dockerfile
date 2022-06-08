@@ -9,7 +9,7 @@ RUN apk add --no-cache unzip shadow nodejs npm nano
 # Get composer
 RUN curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php
 RUN php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
-# copy ini and enable rdkafka ext
+# copy ini
 RUN cd /usr/local/etc/php && cp php.ini-development php.ini
 # Create user & group so docker doesn't run as root
 WORKDIR /var/www/html
