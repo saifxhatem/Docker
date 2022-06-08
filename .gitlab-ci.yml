@@ -1,5 +1,5 @@
 # This file is a template, and might need editing before it works on your project.
-docker-build-master:
+docker-build-base-master:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -9,12 +9,12 @@ docker-build-master:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - cd php/8/base
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
+    - docker build --pull -t "$CI_REGISTRY_BASE_IMAGE" .
+    - docker push "$CI_REGISTRY_BASE_IMAGE"
   only:
     - master
 
-docker-build:
+docker-build-kafka-master:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -22,9 +22,9 @@ docker-build:
     - docker:dind
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    - cd php/8/base
+    - cd php/8/kafka
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-  except:
+    - docker build --pull -t "$CI_REGISTRY_KAFKA_IMAGE" .
+    - docker push "$CI_REGISTRY_KAFKA_IMAGE"
+  only:
     - master
