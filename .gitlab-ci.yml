@@ -1,5 +1,5 @@
 # This file is a template, and might need editing before it works on your project.
-docker-build-base-master:
+docker-build-base-main:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -12,9 +12,9 @@ docker-build-base-master:
     - docker build --pull -t "$CI_REGISTRY_BASE_IMAGE" .
     - docker push "$CI_REGISTRY_BASE_IMAGE"
   only:
-    - master
+    - main
 
-docker-build-kafka-master:
+docker-build-kafka-main:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -27,4 +27,4 @@ docker-build-kafka-master:
     - docker build --pull -t "$CI_REGISTRY_KAFKA_IMAGE" .
     - docker push "$CI_REGISTRY_KAFKA_IMAGE"
   only:
-    - master
+    - main
