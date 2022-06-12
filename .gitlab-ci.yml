@@ -9,52 +9,52 @@ docker-build-php-7-base-main:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - cd php/7.4/base
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_TAG" .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_REGISTRY_IMAGE_TAG"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG"
   only:
     - main
 
-# docker-build-php-7-kafka-main:
-#   # Official docker image.
-#   image: docker:latest
-#   stage: build
-#   services:
-#     - docker:dind
-#   before_script:
-#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#     - cd php/7.4/kafka
-#   script:
-#     - docker build --pull -t "$CI_IMAGE_PHP7_4_KAFKA" .
-#     - docker push "$CI_IMAGE_PHP7_4_KAFKA"
-#   only:
-#     - main
+docker-build-php-7-kafka-main:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - cd php/7.4/kafka
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG"
+  only:
+    - main
 
-# docker-build-php-8-base-main:
-#   # Official docker image.
-#   image: docker:latest
-#   stage: build
-#   services:
-#     - docker:dind
-#   before_script:
-#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#     - cd php/8/base
-#   script:
-#     - docker build --pull -t "$CI_IMAGE_PHP8_BASE" .
-#     - docker push "$CI_IMAGE_PHP8_BASE"
-#   only:
-#     - main
+docker-build-php-8-base-main:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - cd php/8/base
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG"
+  only:
+    - main
 
-# docker-build-php-8-kafka-main:
-#   # Official docker image.
-#   image: docker:latest
-#   stage: build
-#   services:
-#     - docker:dind
-#   before_script:
-#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#     - cd php/8/kafka
-#   script:
-#     - docker build --pull -t "$CI_IMAGE_PHP8_KAFKA" .
-#     - docker push "$CI_IMAGE_PHP8_KAFKA"
-#   only:
-#     - main
+docker-build-php-8-kafka-main:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - cd php/8/kafka
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
+  only:
+    - main
