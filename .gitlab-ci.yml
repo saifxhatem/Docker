@@ -56,7 +56,7 @@ docker-build-php-8-kafka:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     # - cd php/8/kafka
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" -f ${CI_REGISTRY_USER}/php{CI_PHP8_KAFKA_TAG} .
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" -f Dockerfile.php{CI_PHP8_KAFKA_TAG} .
     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
   only:
     - main
