@@ -3,7 +3,7 @@ FROM php:8.1.6-fpm-alpine3.15
 # Get installer script
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 # Install php exts
-RUN install-php-extensions gd curl dom mbstring pdo pdo_mysql posix zip redis
+RUN install-php-extensions gd pdo_mysql zip redis xdebug
 # Install deps
 RUN apk add --no-cache unzip shadow nodejs npm nano
 # Get composer
