@@ -60,3 +60,19 @@ docker-build-php-8-kafka:
     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
   only:
     - main
+
+
+docker-build-php-pipeline:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP7_4_PIPELINE_TAG" || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP7_4_PIPELINE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_PIPELINE_TAG" -f Dockerfile.php${CI_PHP7_4_PIPELINE_TAG} .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_PIPELINE_TAG"
+  only:
+    - main
