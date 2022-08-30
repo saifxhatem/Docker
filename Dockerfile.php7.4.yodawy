@@ -1,0 +1,32 @@
+ARG PHP_EXTENSIONS="bcmath pdo_mysql redis xmlrpc rdkafka"
+FROM thecodingmachine/php:7.4-v4-fpm as php_base
+ENV TEMPLATE_PHP_INI=production
+ENV PHP_EXTENSION_GD=1 \
+    PHP_EXTENSION_MONGODB=1 \
+    PHP_EXTENSION_REDIS=1 \
+    PHP_EXTENSION_XMLRPC=1 \
+    PHP_EXTENSION_IGBINARY=1 \
+    PHP_EXTENSION_IMAGEMAGIK=1 \ 
+    PHP_EXTENSION_MSGPACK=1 \
+    PHP_EXTENSION_MEMCACHED=1 \
+    PHP_EXTENSION_RDKAFKA=1 \
+    PHP_INI_UPLOAD_MAX_FILESIZE=20M \
+    PHP_INI_POST_MAX_SIZE=40M
+USER root
+RUN cd /root && wget https://github.com/elastic/apm-agent-php/releases/download/v1.4/apm-agent-php_1.4_all.deb
+RUN dpkg -i /root/apm-agent-php_1.4_all.deb
+RUN cd /root && wget https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb
+RUN sudo dpkg -i /root/metricbeat-7.16.0-amd64.deb
+RUN wget -O /usr/local/bin/php-fpm-healthcheck \
+https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+&& chmod +x /usr/local/bin/php-fpm-healthcheck
+RUN sudo apt-get update \
+  && sudo apt-get install -y imagemagick \
+  && sudo apt-get install -y php7.4-memcached \
+  && sudo apt-get install -y php7.4-mongodb \
+  && sudo apt-get install -y php7.4-xmlrpc \
+  && sudo apt-get install -y php7.4-redis \
+  && sudo apt-get install -y libfcgi-bin \
+  && sudo apt-get autoremove -y \
+  && sudo apt-get clean -y \
+  && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

@@ -1,52 +1,82 @@
 # This file is a template, and might need editing before it works on your project.
 
 
-docker-build-php-7-base:
-  # Official docker image.
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG" -f Dockerfile.php${CI_PHP7_4_BASE_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG"
-  only:
-    - main
+# docker-build-php-7-base:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG" || true
+#     - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG" -f Dockerfile.php${CI_PHP7_4_BASE_TAG} .
+#     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_BASE_TAG"
+#   only:
+#     - main
 
-docker-build-php-7-kafka:
-  # Official docker image.
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG" -f Dockerfile.php${CI_PHP7_4_KAFKA_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG"
-  only:
-    - main
+# docker-build-php-7-kafka:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG" || true
+#     - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG" -f Dockerfile.php${CI_PHP7_4_KAFKA_TAG} .
+#     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP7_4_KAFKA_TAG"
+#   only:
+#     - main
 
-docker-build-php-8-base:
-  # Official docker image.
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" -f Dockerfile.php${CI_PHP8_BASE_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG"
-  only:
-    - main
+# docker-build-php-8-base:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" || true
+#     - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" -f Dockerfile.php${CI_PHP8_BASE_TAG} .
+#     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG"
+#   only:
+#     - main
 
-docker-build-php-8-kafka:
+# docker-build-php-8-kafka:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" || true
+#     - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" -f Dockerfile.php${CI_PHP8_KAFKA_TAG} .
+#     - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
+#   only:
+#     - main
+
+# docker-build-php-8-base-root:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#   script:
+#     - docker pull "$CI_REGISTRY_IMAGE:${CI_PHP8_BASE_TAG}-root" || true
+#     - docker build --cache-from ${CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG}-root -t "$CI_REGISTRY_IMAGE:${CI_PHP8_BASE_TAG}-root" -f Dockerfile.php${CI_PHP8_BASE_TAG}-root .
+#     - docker push "$CI_REGISTRY_IMAGE:${CI_PHP8_BASE_TAG}-root"
+#   only:
+#     - main
+
+docker-build-php-yodawy:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -55,8 +85,8 @@ docker-build-php-8-kafka:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" -f Dockerfile.php${CI_PHP8_KAFKA_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
+    - docker pull "$CI_REGISTRY_IMAGE:${CI_PHP_YODAWY_TAG}" || true
+    - docker build --cache-from ${CI_PHP_YODAWY_TAG} -t "${CI_PHP_YODAWY_TAG}" -f Dockerfile.php7.4-yodawy .
+    - docker push "$CI_REGISTRY_IMAGE:${CI_PHP_YODAWY_TAG}"
   only:
     - main
