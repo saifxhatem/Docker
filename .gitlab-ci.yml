@@ -85,8 +85,8 @@ docker-build-php-yodawy:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:${CI_PHP_YODAWY_TAG}" || true
-    - docker build --cache-from ${CI_PHP_YODAWY_TAG} -t "${CI_PHP_YODAWY_TAG}" -f Dockerfile.php7.4.yodawy .
-    - docker push "$CI_REGISTRY_IMAGE:${CI_PHP_YODAWY_TAG}"
+    - docker pull "saifxhatem/yodawy:php" || true
+    - docker build --cache-from "saifxhatem/yodawy:php" -t "saifxhatem/yodawy:php" -f Dockerfile.php7.4yodawy .
+    - docker push "saifxhatem/yodawy:php"
   only:
     - main
