@@ -86,7 +86,7 @@ docker-build-php-yodawy:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker pull "saifxhatem/yodawy:php" || true
-    - docker build --cache-from "saifxhatem/yodawy:php" -t "saifxhatem/yodawy:php" -f Dockerfile.php7.4yodawy .
+    - docker build --cache-from "saifxhatem/yodawy:php" -t "saifxhatem/yodawy:php" -f Dockerfile.php7.4.yodawy .
     - docker push "saifxhatem/yodawy:php"
   only:
     - main
