@@ -3,7 +3,7 @@ FROM php:8.1.6-fpm-alpine3.15
 # Get installer script
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 # Install php exts
-RUN install-php-extensions gd pdo_mysql zip redis rdkafka
+RUN install-php-extensions gd pdo_mysql zip redis rdkafka pcntl
 # Install deps & composer
 RUN apk add --no-cache \ 
     unzip \ 
