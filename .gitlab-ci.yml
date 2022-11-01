@@ -2,7 +2,7 @@
 
 #deb
 
-docker-build-php-7-base:
+build-php-7.4:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -17,7 +17,7 @@ docker-build-php-7-base:
   only:
     - main
 
-docker-build-php-7-kafka:
+build-php-7.4-kafka:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -32,7 +32,7 @@ docker-build-php-7-kafka:
   only:
     - main
 
-docker-build-php-8-base:
+build-php-8.1:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -41,13 +41,13 @@ docker-build-php-8-base:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG" -f debian/Dockerfile.php${CI_PHP8_BASE_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG"
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG" || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG" -f debian/Dockerfile.php${CI_PHP8_1_BASE_TAG} .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG"
   only:
     - main
 
-docker-build-php-8-kafka:
+build-php-8.1-kafka:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -56,15 +56,15 @@ docker-build-php-8-kafka:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG" -f debian/Dockerfile.php${CI_PHP8_KAFKA_TAG} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG"
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG" || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG -t "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG" -f debian/Dockerfile.php${CI_PHP8_1_KAFKA_TAG} .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG"
   only:
     - main
 
 #alpine
 
-docker-build-php-7-base-alpine:
+build-php-7.4-alpine:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -79,7 +79,7 @@ docker-build-php-7-base-alpine:
   only:
     - main
 
-docker-build-php-7-kafka-alpine:
+build-php-7.4-kafka-alpine:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -94,7 +94,7 @@ docker-build-php-7-kafka-alpine:
   only:
     - main
 
-docker-build-php-8-base-alpine:
+build-php-8.1-alpine:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -103,13 +103,13 @@ docker-build-php-8-base-alpine:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG_ALPINE" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG_ALPINE -t "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG_ALPINE" -f alpine/Dockerfile.php${CI_PHP8_BASE_TAG_ALPINE} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_BASE_TAG_ALPINE"
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG_ALPINE" || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG_ALPINE -t "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG_ALPINE" -f alpine/Dockerfile.php${CI_PHP8_1_BASE_TAG_ALPINE} .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_1_BASE_TAG_ALPINE"
   only:
     - main
 
-docker-build-php-8-kafka-alpine:
+build-php-8.1-kafka-alpine:
   # Official docker image.
   image: docker:latest
   stage: build
@@ -118,9 +118,9 @@ docker-build-php-8-kafka-alpine:
   before_script:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG_ALPINE" || true
-    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG_ALPINE -t "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG_ALPINE" -f alpine/Dockerfile.php${CI_PHP8_KAFKA_TAG_ALPINE} .
-    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_KAFKA_TAG_ALPINE"
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG_ALPINE" || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG_ALPINE -t "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG_ALPINE" -f alpine/Dockerfile.php${CI_PHP8_1_KAFKA_TAG_ALPINE} .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_PHP8_1_KAFKA_TAG_ALPINE"
   only:
     - main
 
