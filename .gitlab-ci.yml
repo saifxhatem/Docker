@@ -157,7 +157,8 @@ build-php-7.4:
   after_script:
     - mkdir -p .docker
     - "docker save -o .docker/fs.tar ${CI_REGISTRY_IMAGE}:${CI_PHP_7_4} 2>&1 || :"
-    - docker system prune -a
+    #why is this needed?
+    # - docker system prune -a
   cache:
     - key: $CI_COMMIT_REF_SLUG
       paths:
