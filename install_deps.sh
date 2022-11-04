@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 if [[ $1 =~ "alpine" ]]; then
     apk add --no-cache unzip shadow nodejs npm nano && curl -sS https://getcomposer.org/installer -o /tmp/composer-setup.php && php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 else
