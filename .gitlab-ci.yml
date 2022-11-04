@@ -152,7 +152,7 @@ build-php-7.4:
     - rm -rf .docker
   script:
     - docker pull "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" || true
-    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${CI_PHP_7_4} -t "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" -f Dockerfile.debian --build-arg PHP_VERSION=${CI_PHP_7_4} .
+    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${CI_PHP_7_4} -t "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" -f Dockerfile --build-arg PHP_VERSION=${CI_PHP_7_4} .
     - docker push "${CI_REGISTRY_IMAGE}:$CI_PHP_7_4"
   after_script:
     - mkdir -p .docker
@@ -165,3 +165,30 @@ build-php-7.4:
         - .docker
   only:
     - main
+
+# build-php-8:
+#   # Official docker image.
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+#     - mkdir -p .docker
+#     - "docker load -q -i .docker/fs.tar 2>&1 || :"
+#     - rm -rf .docker
+#   script:
+#     - docker pull "${CI_REGISTRY_IMAGE}:${CI_PHP_8_0}" || true
+#     - docker build --cache-from ${CI_REGISTRY_IMAGE}:${CI_PHP_8_0} -t "${CI_REGISTRY_IMAGE}:${CI_PHP_8_0}" -f Dockerfile.debian --build-arg PHP_VERSION=${CI_PHP_8_0} .
+#     - docker push "${CI_REGISTRY_IMAGE}:$CI_PHP_8_0"
+#   after_script:
+#     - mkdir -p .docker
+#     - "docker save -o .docker/fs.tar ${CI_REGISTRY_IMAGE}:${CI_PHP_8_0} 2>&1 || :"
+#     #why is this needed?
+#     # - docker system prune -a
+#   cache:
+#     - key: $CI_COMMIT_REF_SLUG
+#       paths:
+#         - .docker
+#   only:
+#     - main
