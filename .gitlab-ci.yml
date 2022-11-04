@@ -42,7 +42,7 @@ build-php:
     - rm -rf .docker
   script:
     - docker pull "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" || true
-    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT} -t "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" -f Dockerfile --build-arg PHP_VERSION=${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT} .
+    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT} -t "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" -f Dockerfile --build-arg PHP_VERSION=${PHP_VERSION}-${VARIANT} .
     - docker push "${CI_REGISTRY_IMAGE}:${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}"
   after_script:
     - mkdir -p .docker
