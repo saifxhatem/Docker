@@ -4,7 +4,7 @@ FROM php:${PHP_VERSION}
 
 # Get installer script
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
-COPY install_dep.sh .
+COPY install_deps.sh .
 # Install php exts
 RUN install-php-extensions gd pdo_mysql zip redis pcntl rdkafka
 # Install deps & composer
