@@ -14,9 +14,8 @@ build-php:
     - "docker load -q -i .docker/fs.tar 2>&1 || :"
     - rm -rf .docker
   script:
-    - echo "${PHP_VERSION} || ${VARIANT}"
     - docker pull "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" || true
-    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT} -t "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" -f Dockerfile --build-arg PHP_VERSION=${PHP_VERSION}-${VARIANT} .
+    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT} -t "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}" -f Dockerfile --build-arg PHP_VERSION=${PHP_VERSION} --build-arg VARIANT=${VARIANT} .
     - docker push "${CI_REGISTRY_IMAGE}:${PHP_VERSION}-${VARIANT}"
   after_script:
     - mkdir -p .docker
