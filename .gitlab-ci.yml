@@ -149,7 +149,7 @@ build-php-7.4:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - docker pull "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" || true
-    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${CI_PHP_7_4} -t "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" -f Dockerfile.debian --build-arg PHP_VERSION=${CI_PHP_7_4}.
+    - docker build --cache-from ${CI_REGISTRY_IMAGE}:${CI_PHP_7_4} -t "${CI_REGISTRY_IMAGE}:${CI_PHP_7_4}" -f Dockerfile.debian --build-arg PHP_VERSION=${CI_PHP_7_4} .
     - docker push "${CI_REGISTRY_IMAGE}:$CI_PHP_7_4"
   only:
     - main
